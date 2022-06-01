@@ -1,0 +1,147 @@
+{
+  "@how_to_earn_the_badge": {
+    "placeholders": {
+      "badge_name": {
+        "example": "1",
+        "type": "String"
+      }
+    }
+  },
+  "@hp_output": {
+    "placeholders": {
+      "amount": {
+        "example": "1",
+        "type": "String"
+      }
+    }
+  },
+  "@is_now_one_of": {
+    "placeholders": {
+      "name": {
+        "example": "c",
+        "type": "String"
+      }
+    }
+  },
+  "@just_seconds": {
+    "placeholders": {
+      "seconds": {
+        "example": "1",
+        "type": "String"
+      }
+    }
+  },
+  "@km_h": {
+    "placeholders": {
+      "km": {
+        "example": "1",
+        "type": "String"
+      }
+    }
+  },
+  "@loyalty_level": {
+    "placeholders": {
+      "number": {
+        "example": "1",
+        "type": "String"
+      }
+    }
+  },
+  "@max_character": {
+    "placeholders": {
+      "number": {
+        "example": "1",
+        "type": "String"
+      }
+    }
+  },
+  "@number_points": {
+    "placeholders": {
+      "number": {
+        "example": "1",
+        "type": "String"
+      }
+    }
+  },
+  "@number_points_required": {
+    "placeholders": {
+      "number": {
+        "example": "1",
+        "type": "String"
+      }
+    }
+  },
+  "@per_year": {
+    "placeholders": {
+      "money": {
+        "example": "1",
+        "type": "String"
+      }
+    }
+  },
+  "@phone_verification_code_instructions": {
+    "placeholders": {
+      "digit_length": {
+        "example": "4",
+        "type": "String"
+      }
+    }
+  },
+  "@sharing_loyalty_template": {
+    "placeholders": {
+      "app_name": {
+        "example": "1",
+        "type": "String"
+      },
+      "badge_name": {
+        "example": "1",
+        "type": "String"
+      }
+    }
+  },
+  "@sharing_referral_template": {
+    "placeholders": {
+      "app_link": {
+        "example": "c",
+        "type": "String"
+      },
+      "app_name": {
+        "example": "c",
+        "type": "String"
+      },
+      "code": {
+        "example": "c",
+        "type": "String"
+      }
+    }
+  },
+  "@you_took_first_step": {
+    "placeholders": {
+      "user_name": {
+        "example": "1",
+        "type": "String"
+      }
+    }
+  },
+  "@your_profile_progress": {
+    "placeholders": {
+      "number": {
+        "example": "c",
+        "type": "String"
+      }
+    }
+  },
+  "@youve_earned_the_badge": {
+    "placeholders": {
+      "badge_name": {
+        "example": "1",
+        "type": "String"
+      }
+    }
+  },
+  "a_300_km": "300 KM'DE",
+  "a_500_km": "500 KM'DE",
+  "english": "İngilizce",
+  "turkish": "Türkçe",
+  "system_error_occurred": "Bir sistem hatası tespit edildi. En kısa sürede düzelteceğiz. Lütfen daha sonra tekrar deneyin."
+}
