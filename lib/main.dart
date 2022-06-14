@@ -7,19 +7,14 @@ import 'package:hypecoin/app_bloc_observer.dart';
 import 'package:hypecoin/app/core/theme/app_themes.dart';
 import 'package:hypecoin/localization/bloc/localization_bloc.dart';
 import 'package:hypecoin/localization/provider/localization_helper.dart';
+
 void main() {
-
-  final  LocalizationHelper localization =LocalizationHelper();
+  final LocalizationHelper localization = LocalizationHelper();
   BlocOverrides.runZoned(
-
-        () => runApp(
-            MultiBlocProvider(providers: [
-              BlocProvider(create: (context)=> ThemeCubit() ),
-              BlocProvider(create: (context)=>LocalizationsBloc(localizationHelper: localization))
-
-            ], child: MyApp())
-
-            ),
+    () => runApp(MultiBlocProvider(providers: [
+      BlocProvider(create: (context) => ThemeCubit()),
+      BlocProvider(create: (context) => LocalizationsBloc(localizationHelper: localization))
+    ], child: MyApp())),
     blocObserver: AppBlocObserver(),
   );
 }
@@ -30,12 +25,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-    ThemeCubit theme= BlocProvider.of<ThemeCubit>(context,listen: true);
+    ThemeCubit theme = BlocProvider.of<ThemeCubit>(context, listen: true);
 
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: theme.isDarkMode?ThemeData.dark():ThemeData.light(),
+      theme: theme.isDarkMode ? ThemeData.dark() : ThemeData.light(),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -75,8 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeCubit theme= BlocProvider.of<ThemeCubit>(context,listen: false);
-    LocalizationsBloc localization= BlocProvider.of<LocalizationsBloc>(context,listen: true);
+    ThemeCubit theme = BlocProvider.of<ThemeCubit>(context, listen: false);
+    LocalizationsBloc localization = BlocProvider.of<LocalizationsBloc>(context, listen: true);
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -127,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Icon(Icons.add),
           ),
           FloatingActionButton(
-            onPressed:context.read<LocalizationsBloc>().add(ChangeLocale(Locale.fromSubtags())),
+            onPressed: () => context.read<LocalizationsBloc>().add(ChangeLocale(Locale.fromSubtags())),
             tooltip: 'Increment',
             child: const Icon(Icons.add),
           ),
