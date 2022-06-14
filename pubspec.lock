@@ -335,6 +335,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.3"
+  flutter_managers:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "1b47821730c19088a657d5c5a545038f9210cbf6"
+      url: "https://github.com/Oguzhanks/flutter_managers.git"
+    source: git
+    version: "0.0.1"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -667,6 +676,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  retry:
+    dependency: transitive
+    description:
+      name: retry
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
   salomon_bottom_bar:
     dependency: "direct main"
     description:
@@ -897,5 +913,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.17.0 <3.0.0"
+  dart: ">=2.17.3 <3.0.0"
   flutter: ">=3.0.0"
