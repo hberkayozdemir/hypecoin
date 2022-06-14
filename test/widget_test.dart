@@ -5,26 +5,34 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:hypecoin/main.dart';
+import 'package:hypecoin/app/core/services/client/client_service.dart';
+import 'package:flutter_managers/flutter_managers.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
-
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('Client Manager Test', (WidgetTester tester) async {
+    final manager = ClientService.instance.manager;
+    final response = await manager.postRequest<Token, Token>(
+      '/token',
+      parseModel: Token(),
+    );
   });
+}
+
+class Token extends ClientModel<Token> {
+  Token({
+    this.token,
+  });
+  String? token;
+
+  @override
+  Token fromJson(Map<String, dynamic> json) => Token(
+        token: json["token"],
+      );
+
+  @override
+  Map<String, dynamic>? toJson() => {
+        "token": token,
+      };
 }
