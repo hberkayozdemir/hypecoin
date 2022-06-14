@@ -5,18 +5,17 @@
 
 import 'package:flutter/widgets.dart';
 
-class $AssetsEnvironmentGen {
-  const $AssetsEnvironmentGen();
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
 
-  String get dev => 'assets/environment/dev.env';
-  String get prod => 'assets/environment/prod.env';
-  String get test => 'assets/environment/test.env';
+  AssetGenImage get appLogo =>
+      const AssetGenImage('assets/icons/app_logo.jpeg');
 }
 
 class Assets {
   Assets._();
 
-  static const $AssetsEnvironmentGen environment = $AssetsEnvironmentGen();
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
 }
 
 class AssetGenImage extends AssetImage {

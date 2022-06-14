@@ -1,7 +1,27 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hypecoin/app/core/features/splash_screen/view/splash_screen.dart';
+import 'package:hypecoin/app/core/theme/cubit/theme_cubit.dart';
+import 'package:hypecoin/app_bloc_observer.dart';
+import 'package:hypecoin/app/core/theme/app_themes.dart';
+import 'package:hypecoin/localization/bloc/localization_bloc.dart';
+import 'package:hypecoin/localization/provider/localization_helper.dart';
 void main() {
-  runApp(const MyApp());
+
+  final  LocalizationHelper localization =LocalizationHelper();
+  BlocOverrides.runZoned(
+
+        () => runApp(
+            MultiBlocProvider(providers: [
+              BlocProvider(create: (context)=> ThemeCubit() ),
+              BlocProvider(create: (context)=>LocalizationsBloc(localizationHelper: localization))
+
+            ], child: MyApp())
+
+            ),
+    blocObserver: AppBlocObserver(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,20 +30,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    ThemeCubit theme= BlocProvider.of<ThemeCubit>(context,listen: true);
+
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme.isDarkMode?ThemeData.dark():ThemeData.light(),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -63,6 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeCubit theme= BlocProvider.of<ThemeCubit>(context,listen: false);
+    LocalizationsBloc localization= BlocProvider.of<LocalizationsBloc>(context,listen: true);
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -105,10 +119,19 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Column(
+        children: [
+          FloatingActionButton(
+            onPressed: theme.changeTheme,
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ),
+          FloatingActionButton(
+            onPressed:context.read<LocalizationsBloc>().add(ChangeLocale(Locale.fromSubtags())),
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ),
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

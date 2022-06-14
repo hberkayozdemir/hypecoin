@@ -1,5 +1,6 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:hypecoin/app/core/logger/hype_logger.dart';
 import 'package:logger/logger.dart';
 
@@ -11,6 +12,7 @@ class HypeAppLogger extends HypeLogger {
 
   final _log = Logger(
     printer: PrettyPrinter(
+      colors: true,
       printTime: true,
     ),
   );
