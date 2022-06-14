@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_managers/flutter_managers.dart';
@@ -9,7 +8,7 @@ class ClientService {
   late ClientManager manager;
   ClientService._() {
     manager = ClientManager(
-        options: BaseOptions(),
+        options: BaseOptions(baseUrl: "http://127.0.0.1:8080"),
         onRefreshToken: (error, manager) async {
           // final refreshToken = await manager.getRequest<Credantial, Credantial>(
           //   "/token",

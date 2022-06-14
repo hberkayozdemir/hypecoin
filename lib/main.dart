@@ -1,11 +1,14 @@
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hypecoin/app/core/features/splash_screen/view/splash_screen.dart';
+
 import 'package:hypecoin/app/core/theme/cubit/theme_cubit.dart';
 import 'package:hypecoin/app_bloc_observer.dart';
-import 'package:hypecoin/app/core/theme/app_themes.dart';
+
 import 'package:hypecoin/localization/bloc/localization_bloc.dart';
+import 'package:hypecoin/localization/i10n.dart';
+import 'package:hypecoin/localization/localization_delegate.dart';
 import 'package:hypecoin/localization/provider/localization_helper.dart';
 
 void main() {
@@ -13,7 +16,8 @@ void main() {
   BlocOverrides.runZoned(
     () => runApp(MultiBlocProvider(providers: [
       BlocProvider(create: (context) => ThemeCubit()),
-      BlocProvider(create: (context) => LocalizationsBloc(localizationHelper: localization))
+
+      BlocProvider(create: (context)=>LocalizationsBloc(localizationHelper: LocalizationHelper(),))
     ], child: MyApp())),
     blocObserver: AppBlocObserver(),
   );
@@ -103,8 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+             Text(
+              HypeAppLocalizationsDelegate.instance.a_300_km,
             ),
             Text(
               '$_counter',
@@ -121,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Icon(Icons.add),
           ),
           FloatingActionButton(
-            onPressed: () => context.read<LocalizationsBloc>().add(ChangeLocale(Locale.fromSubtags())),
+            onPressed: () => updateLanguage,
             tooltip: 'Increment',
             child: const Icon(Icons.add),
           ),
@@ -129,4 +133,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+
+void updateLanguage(BuildContext context, ValueNotifier<L10n> selectedLocale, L10n newSelection){
+  selectedLocale.value=newSelection;
+
+  context.read<LocalizationsBloc>().add(ChangeLocale(selectedLocale.value.getLocale()));
+
 }
