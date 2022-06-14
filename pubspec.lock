@@ -340,7 +340,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "89d51da188d6503a73e83b9ffd66b386ea773df1"
+      resolved-ref: b9bb4c104c69078cfea80ed7b4d72e65a68b7918
       url: "https://github.com/Oguzhanks/flutter_managers.git"
     source: git
     version: "0.0.1"
