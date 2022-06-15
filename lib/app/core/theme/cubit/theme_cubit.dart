@@ -6,7 +6,7 @@ part 'theme_state.dart';
 class ThemeCubit extends Cubit<ThemeState> {
   ThemeCubit() : super(ThemeInitial());
 
-  bool _isDarkMode= false;
+  bool _isDarkMode= true;
   bool get isDarkMode=> _isDarkMode;
 
   void changeTheme(){

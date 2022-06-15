@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';class AppThemes {
+import 'package:flutter/material.dart';
+
+class AppThemes {
   static final appThemeData = {
     AppTheme.lightTheme: ThemeData(
       scaffoldBackgroundColor: Colors.yellow,
@@ -21,7 +23,9 @@ import 'package:flutter/material.dart';class AppThemes {
       ),
     )
   };
-}enum AppTheme {
+}
+
+enum AppTheme {
   lightTheme,
   darkTheme,
 }

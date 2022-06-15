@@ -9,17 +9,26 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_managers/flutter_managers.dart';
+import 'package:hypecoin/app/core/models/user_model.dart';
 
 void main() {
   test('Client Manager Test', () async {
     final manager = ClientManager(
-      options: BaseOptions(baseUrl: ''),
+
+      options: BaseOptions(baseUrl: 'http://127.0.0.1:8080'),
+
     );
-    final response = await manager.getRequest<Connection, Connection>(
+    final response = await manager.postRequest<User, User>(
       '/login',
-      parseModel: Connection(),
+      body:{
+
+        "email": "hilmiberkayozdemir@gmail.com",
+        "password":"Hbo.1998"
+      }
+      ,
+      parseModel: User(),
     );
-    debugPrint(response.data?.success.toString());
+    debugPrint(response.data?.exp.toString());
   });
 }
 

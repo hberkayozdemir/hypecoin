@@ -14,9 +14,9 @@ class HypeApp {
 
   static bool get isProduction =>
       packageInfo.packageName == 'com.hypecoin.hypecoinmobile.prod';
+
   static Environment get activeEnvironment =>
       isProduction ? Environment.prod : Environment.staging;
-
 }
 
-enum Environment { test, dev, prod,staging }
+enum Environment { test, dev, prod, staging }

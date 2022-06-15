@@ -5,16 +5,14 @@ import 'package:hive/hive.dart';
 import 'package:hypecoin/app/core/constants/string_constants.dart';
 import 'package:hypecoin/app/core/db/app_config.dart';
 
-
-class HypeLocalDataBaseService  {
+class HypeLocalDataBaseService {
   HypeLocalDataBaseService(this._flutterSecureStorage);
+
   final FlutterSecureStorage _flutterSecureStorage;
   late Box<dynamic> _box;
   AppConfig? _appConfigurationEntity;
 
-
   Box<dynamic> get box => _box;
-
 
   Future<void> initializeDatabase() async {
     var opened = false;
@@ -28,7 +26,7 @@ class HypeLocalDataBaseService  {
   Future<bool> openBox() async {
     try {
       final toggBoxKey =
-      await _flutterSecureStorage.read(key: StringConstant.hypeBoxKey);
+          await _flutterSecureStorage.read(key: StringConstant.hypeBoxKey);
       if (toggBoxKey == null) {
         final key = Hive.generateSecureKey();
         await _flutterSecureStorage.write(
@@ -52,9 +50,7 @@ class HypeLocalDataBaseService  {
     }
   }
 
-
   void setAppConfigurationEntity(BoxEvent event) {
     _appConfigurationEntity = event.value as AppConfig?;
   }
-
 }

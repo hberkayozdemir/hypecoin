@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hypecoin/app/core/logger/hype_logger.dart';
 import 'package:logger/logger.dart';
 
-
 class HypeAppLogger extends HypeLogger {
   HypeAppLogger._();
 
