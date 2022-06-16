@@ -31,7 +31,11 @@ class _$AppRouter extends RootStackRouter {
     },
     RegisterRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const RegisterScreen());
+          routeData: routeData, child: RegisterScreen());
+    },
+    VerificationRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const VerificationScreen());
     },
     LandingMainRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -67,6 +71,7 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(GetStartedRoute.name, path: 'getStarted'),
         RouteConfig(LoginRoute.name, path: 'login'),
         RouteConfig(RegisterRoute.name, path: 'register'),
+        RouteConfig(VerificationRoute.name, path: 'verification'),
         RouteConfig(LandingMainRoute.name, path: 'landing', children: [
           RouteConfig(FavlistTab.name,
               path: 'favlist', parent: LandingMainRoute.name),
@@ -112,6 +117,15 @@ class RegisterRoute extends PageRouteInfo<void> {
   const RegisterRoute() : super(RegisterRoute.name, path: 'register');
 
   static const String name = 'RegisterRoute';
+}
+
+/// generated route for
+/// [VerificationScreen]
+class VerificationRoute extends PageRouteInfo<void> {
+  const VerificationRoute()
+      : super(VerificationRoute.name, path: 'verification');
+
+  static const String name = 'VerificationRoute';
 }
 
 /// generated route for
