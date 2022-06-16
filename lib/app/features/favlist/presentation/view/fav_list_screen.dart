@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hypecoin/app/core/theme/cubit/theme_cubit.dart';
 import 'package:hypecoin/app/features/favlist/presentation/widget/trades_card.dart';
 import 'package:hypecoin/app/features/treasury/transactions/utilities/themeStyles.dart';
+import 'package:hypecoin/localization/localization.dart';
 
 class FavListScreen extends StatelessWidget {
   const FavListScreen({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ body: Padding(
 
     children: [
       SizedBox(height: 40.h,),
-        Text('You Favorite Spots.', style: ThemeStyles.primaryTitleSpots),
+        Text(context.localization.your_favorite_spots, style: ThemeStyles.primaryTitleSpots),
 
         FavListCard(
           color: Color(0xfffe695d),

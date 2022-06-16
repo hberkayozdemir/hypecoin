@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hypecoin/app/core/constants/assets.gen.dart';
 import 'package:hypecoin/app/features/news/data/article.dart';
@@ -128,21 +129,18 @@ class _ArticleScreenState extends State<ArticleScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(
-                        Icons.arrow_back,
-                        size: 30,
-                        color: Colors.black,
+                      InkWell(
+                        onTap: (){
+                          context.router.pop();
+                        },
+                        child: Icon(
+                          Icons.arrow_back,
+                          size: 30,
+                          color: Colors.black,
+                        ),
                       ),
-                      Icon(
-                        Icons.share,
-                        size: 30,
-                        color: Colors.black,
-                      ),
-                      Icon(
-                        Icons.arrow_forward,
-                        color: Colors.black,
-                        size: 30,
-                      ),
+
+
                     ],
                   ),
                 ),

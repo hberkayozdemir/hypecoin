@@ -26,38 +26,45 @@ void main() {
 
           BlocProvider(create: (context) =>
               LocalizationsBloc(localizationHelper: LocalizationHelper(),))
-        ], child: BlocBuilder<LocalizationsBloc, LocalizationsState>(
+        ], child: BlocBuilder<ThemeCubit, ThemeState>(
           builder: (context, state) {
-            return ScreenUtilInit(
-              designSize: const Size(375, 812),
-              builder: (_, child) =>
-                  MaterialApp.router(
-                    debugShowCheckedModeBanner: false,
-                    builder: (BuildContext context, Widget? child) {
-                      final data = MediaQuery.of(context);
-                      return MediaQuery(
-                        data: data.copyWith(
-                          textScaleFactor: data.textScaleFactor.clamp(1.0,
-                              1.15),
+            return BlocBuilder<LocalizationsBloc, LocalizationsState>(
+              builder: (context, state) {
+                return ScreenUtilInit(
+                  designSize: const Size(375, 812),
+                  builder: (_, child) =>
+                      MaterialApp.router(
+                        theme:ThemeData(
+                          brightness: context.read<ThemeCubit>().isDarkMode?Brightness.dark:Brightness.light,
                         ),
-                        child: child!,
+                        debugShowCheckedModeBanner: false,
+                        builder: (BuildContext context, Widget? child) {
+                          final data = MediaQuery.of(context);
+                          return MediaQuery(
+                            data: data.copyWith(
+                              textScaleFactor: data.textScaleFactor.clamp(1.0,
+                                  1.15),
+                            ),
+                            child: child!,
 
-                      );
-                    },
+                          );
+                        },
 
 
-                    localizationsDelegates: const [
-                      HypeAppLocalizationsDelegate(),
-                      GlobalMaterialLocalizations.delegate,
-                      GlobalWidgetsLocalizations.delegate,
-                      GlobalCupertinoLocalizations.delegate,
-                    ],
-                    locale: state.locale,
-                    supportedLocales: L10n.all,
-                    routerDelegate: appRouter.delegate(),
-                    routeInformationParser: appRouter.defaultRouteParser(),
-                    useInheritedMediaQuery: true,
-                  ),
+                        localizationsDelegates: const [
+                          HypeAppLocalizationsDelegate(),
+                          GlobalMaterialLocalizations.delegate,
+                          GlobalWidgetsLocalizations.delegate,
+                          GlobalCupertinoLocalizations.delegate,
+                        ],
+                        locale: state.locale,
+                        supportedLocales: L10n.all,
+                        routerDelegate: appRouter.delegate(),
+                        routeInformationParser: appRouter.defaultRouteParser(),
+                        useInheritedMediaQuery: true,
+                      ),
+                );
+              },
             );
           },
         ))),

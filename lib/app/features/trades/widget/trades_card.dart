@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:hypecoin/app/features/treasury/transactions/screens/transacationPage.dart';
+
 import 'package:hypecoin/app/features/treasury/transactions/utilities/themeStyles.dart';
+import 'package:hypecoin/app/core/features/pop_up/dialogs.dart';
 
 class TradesCard extends StatefulWidget {
   final String title;
@@ -45,20 +47,14 @@ class _TradesCardState extends State<TradesCard> {
               Expanded(
                 flex: 8,
                 child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => TransactionPage(
-                          color: widget.color,
-                          title: widget.title,
-                          subTitle: widget.subTitle,
-                          price: widget.price,
-                          letter: widget.letter,
-                        ),
+                  onTap: () => popUpMessage(
+                    context,
+                   "asdasd",
+                      "sad",
+                      useRootNavigator: true,
+                      buttonText: "Geç",
+                      dismissable: false,
                       ),
-                    );
-                  },
                   child: Container(
                     height: 50.0,
                     child: Column(

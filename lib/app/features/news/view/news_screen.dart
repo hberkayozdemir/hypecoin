@@ -17,14 +17,18 @@ class NewsScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.transparent,
         appBar: HibemiAppBar(
-          titleImage: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Assets.icons.appLogo.image(),
-            ],
-          ),
-          hasBackButton: false,
+    titleImage: Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Assets.icons.appLogo.image(),
+        Assets.images.drawerbanner.image(
+          height: 80.h,
+          width: 200.w,
         ),
+      ],
+    ),
+    hasBackButton: false,
+    ),
         body: NewsBodyScreen());
   }
 }

@@ -14,14 +14,17 @@ class CreditCard extends StatefulWidget {
 
 class _CreditCardState extends State<CreditCard> {
   @override
+
+
   Widget build(BuildContext context) {
+    bool isDarkMode=Theme.of(context).brightness==Brightness.dark;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
         height: 216.h,
         width: 380.w,
         decoration: BoxDecoration(
-          color: ThemeColors.black,
+          color: isDarkMode? Colors.white:ThemeColors.black,
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Padding(
@@ -38,7 +41,7 @@ class _CreditCardState extends State<CreditCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Assets.icons.appLogo.image(height: 55),
-                    Text('5.720,30 €', style: ThemeStyles.cardMoney),
+                    Text(' 5.720,30 \$ ', style: ThemeStyles.cardMoney.copyWith(color: isDarkMode ? Colors.black:Colors.white)),
                 Assets.images.drawerbanner.image(width: 130),
                   ],
                 ),
@@ -51,12 +54,12 @@ class _CreditCardState extends State<CreditCard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Hilmi Berkay Özdemir', style: ThemeStyles.cardDetails),
+                    Text('Hilmi Berkay Özdemir', style: ThemeStyles.cardDetails.copyWith(color: isDarkMode?Colors.black: Colors.white)),
                     Row(
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 6.0),
-                          child: Text('4756', style: ThemeStyles.cardDetails),
+                          child: Text('4756', style: ThemeStyles.cardDetails.copyWith(color: isDarkMode?Colors.black: Colors.white)),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 6.0),
@@ -68,7 +71,7 @@ class _CreditCardState extends State<CreditCard> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 6.0),
-                          child: Text('9018', style: ThemeStyles.cardDetails),
+                          child: Text('9018', style: ThemeStyles.cardDetails.copyWith(color: isDarkMode?Colors.black: Colors.white)),
                         ),
                       ],
                     )

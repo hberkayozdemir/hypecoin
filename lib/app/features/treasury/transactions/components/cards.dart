@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hypecoin/app/features/treasury/transactions/utilities/themeColors.dart';
 import 'package:hypecoin/app/features/treasury/transactions/utilities/themeStyles.dart';
 import 'package:hypecoin/app/features/treasury/transactions/widgets/creditCard.dart';
+import 'package:hypecoin/localization/localization.dart';
 
 class CardsList extends StatefulWidget {
   @override
@@ -41,7 +42,7 @@ class _CardsListState extends State<CardsList> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Your Account', style: ThemeStyles.primaryTitle),
+                Text(context.localization.your_account, style: ThemeStyles.primaryTitle),
               ],
             ),
           ),

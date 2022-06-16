@@ -8,6 +8,7 @@ import 'package:hypecoin/app/core/theme/cubit/theme_cubit.dart';
 import 'package:hypecoin/app/features/treasury/transactions/utilities/themeStyles.dart';
 import 'package:hypecoin/app/features/treasury/transactions/widgets/otherDetailsDivider.dart';
 import 'package:hypecoin/app/features/treasury/transactions/widgets/transactionCard.dart';
+import 'package:hypecoin/localization/localization.dart';
 
 class HomePageScreen extends StatelessWidget {
   const HomePageScreen({Key? key}) : super(key: key);
@@ -37,35 +38,44 @@ class HomePageScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 12.h,),
             BannerWidget(),
-            Text('New Trends', style: ThemeStyles.primaryTitle),
-            TransactionCard(
-              color: Color(0xfffe695d),
-              letter: 'B',
-              title: 'BTC',
-              subTitle: 'Bitcoin',
-              price: '- 620,30 €',
-            ),
-            TransactionCard(
-              color: Color(0xffff0000),
-              letter: 'A',
-              title: 'AVAX',
-              subTitle: 'AVALANCHE',
-              price: '- 59,99 €',
-            ),
-            TransactionCard(
-              color: Color(0xff103289),
-              letter: 'E',
-              title: 'ETH',
-              subTitle: 'Ethereum',
-              price: '- 59,99 €',
-            ),
-            TransactionCard(
-              color: Color(0xffaa00ff),
-              letter: 'S',
-              title: 'SOL',
-              subTitle: 'Solana',
-              price: '- 59,99 €',
+            SizedBox(height: 12.h,),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                children: [
+                  Text(context.localization.new_trends, style: ThemeStyles.primaryTitle),
+                  TransactionCard(
+                    color: Color(0xfffe695d),
+                    letter: 'B',
+                    title: 'BTC',
+                    subTitle: 'Bitcoin',
+                    price: '- 620,30 €',
+                  ),
+                  TransactionCard(
+                    color: Color(0xffff0000),
+                    letter: 'A',
+                    title: 'AVAX',
+                    subTitle: 'AVALANCHE',
+                    price: '- 59,99 €',
+                  ),
+                  TransactionCard(
+                    color: Color(0xff103289),
+                    letter: 'E',
+                    title: 'ETH',
+                    subTitle: 'Ethereum',
+                    price: '- 59,99 €',
+                  ),
+                  TransactionCard(
+                    color: Color(0xffaa00ff),
+                    letter: 'S',
+                    title: 'SOL',
+                    subTitle: 'Solana',
+                    price: '- 59,99 €',
+                  ),
+                ],
+              ),
             ),
           ],
         )));

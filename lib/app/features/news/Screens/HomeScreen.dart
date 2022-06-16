@@ -4,6 +4,7 @@ import 'package:hypecoin/app/core/constants/assets.gen.dart';
 import 'package:hypecoin/app/features/news/Widgets/ForYouContainer.dart';
 import 'package:hypecoin/app/features/news/Widgets/TrendingContainer.dart';
 import 'package:hypecoin/app/features/news/data/article.dart';
+import 'package:hypecoin/localization/localization.dart';
 
 class NewsBodyScreen extends StatefulWidget {
   @override
@@ -47,6 +48,30 @@ class _NewsBodyScreenState extends State<NewsBodyScreen> {
         time: '1hr ago',
         author: 'Sky News',
       ),
+      Article(
+        category: 'politics',
+        title: 'Biden anti-trans violence',
+        description:
+        'Democratic presidential nominee Joe Biden called the violence against transgender and gender-nonconforming people an “epidemic that needs national leadership” and accused the Trump administration of fueling “the flames of transphobia.”',
+        time: '1hr ago',
+        author: 'Sky News',
+      ),
+      Article(
+        category: 'politics',
+        title: 'Biden anti-trans violence',
+        description:
+        'Democratic presidential nominee Joe Biden called the violence against transgender and gender-nonconforming people an “epidemic that needs national leadership” and accused the Trump administration of fueling “the flames of transphobia.”',
+        time: '1hr ago',
+        author: 'Sky News',
+      ),
+      Article(
+        category: 'politics',
+        title: 'Biden anti-trans violence',
+        description:
+        'Democratic presidential nominee Joe Biden called the violence against transgender and gender-nonconforming people an “epidemic that needs national leadership” and accused the Trump administration of fueling “the flames of transphobia.”',
+        time: '1hr ago',
+        author: 'Sky News',
+      ),
     ];
     for (Article article in forYou) {
       forYouContainers.add(ForYouContainer(article: article));
@@ -59,6 +84,8 @@ class _NewsBodyScreenState extends State<NewsBodyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode=Theme.of(context).brightness==Brightness.dark;
+
     final Article article = Article(
       image: Assets.images.banner3.path,
       category: 'politics',
@@ -69,41 +96,22 @@ class _NewsBodyScreenState extends State<NewsBodyScreen> {
       author: 'Sky News',
     );
     return ListView(
+      padding: EdgeInsets.all(2),
       children: [
-        SizedBox(
-          height: 20,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Material(
-            elevation: 5,
-            child: TextField(
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 15),
-                hintText: 'Search...',
-                border: InputBorder.none,
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: Colors.grey,
-                ),
-                filled: true,
-                fillColor: Colors.white,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 20,
-        ),
+
+
+
         DefaultTabController(
           length: 5,
           child: TabBar(
             labelStyle: TextStyle(
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w600,
             ),
             indicatorSize: TabBarIndicatorSize.label,
-            labelColor: Colors.blue,
-            unselectedLabelColor: Colors.white,
+            labelColor: Colors.purple,
+            unselectedLabelColor: isDarkMode? Colors.white:Colors.black,
+
+            indicatorColor: Colors.purple,
             isScrollable: true,
             tabs: [
               Tab(text: 'Ethereum'),
@@ -122,24 +130,15 @@ class _NewsBodyScreenState extends State<NewsBodyScreen> {
             ],
           ),
         ),
-        SizedBox(
-          height: 20,
-        ),
-        Container(
-            height: 100,
-            padding: EdgeInsets.only(left: 10),
-            child: TrendingContainer(
-              article: article,
-            )),
-        SizedBox(
-          height: 20,
-        ),
+
+
+
         Padding(
-          padding: const EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.all(10),
           child: Text(
-            'For You',
+            context.localization.for_you,
             style: TextStyle(
-              color: Colors.white,
+              color: isDarkMode? Colors.white:Colors.black,
               fontSize: 25,
               fontWeight: FontWeight.bold,
             ),

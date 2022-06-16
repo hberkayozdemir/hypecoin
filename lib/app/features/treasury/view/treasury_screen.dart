@@ -17,7 +17,10 @@ class TreasuryScreen extends StatelessWidget {
       backgroundColor: Colors.transparent,
       body: Column(
         children: [
-          CardsList(),
+          Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: CardsList(),
+          ),
           RecentTransactions(),
         ],
       ),

@@ -15,39 +15,45 @@ class ForYouContainer extends StatefulWidget {
 }
 
 class _ForYouContainerState extends State<ForYouContainer> {
+
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = MediaQuery
+        .of(context)
+        .platformBrightness == Brightness.dark;
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => ArticleScreen(
+            builder: (context) =>
+                ArticleScreen(
                   article: widget.article,
                 )));
       },
       child: Container(
-        height: 110.h,
-        width: MediaQuery.of(context).size.width - 40,
-        margin: EdgeInsets.symmetric(vertical: 10),
+
+
+        margin: EdgeInsets.symmetric(vertical: 20.r, horizontal: 10.r),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             color: Color(0xff191628),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey,
+                color: !isDarkMode ? Colors.white:Colors.black,
                 blurRadius: 0,
                 spreadRadius: 0,
-                offset: Offset(0, 1),
+                offset: Offset(0, 0.5),
               )
             ]),
         child: Row(
           children: [
             Container(
-              width: 100.w,
+              width: 90.h,
+              height: 90.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20),
                   topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
+
                 ),
                 image: DecorationImage(
                   fit: BoxFit.contain,
