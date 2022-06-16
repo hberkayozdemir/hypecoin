@@ -31,9 +31,11 @@ class $AssetsImagesGen {
 class $AssetsVideosGen {
   const $AssetsVideosGen();
 
+  String get failure => 'assets/videos/failure.riv';
   String get getStart => 'assets/videos/get_start.mp4';
   String get intro => 'assets/videos/intro.mp4';
   String get metaverse => 'assets/videos/metaverse.mp4';
+  String get success => 'assets/videos/success.riv';
 }
 
 class Assets {

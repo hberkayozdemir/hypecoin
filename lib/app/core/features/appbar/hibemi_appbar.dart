@@ -20,7 +20,7 @@ class HibemiAppBar extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     final theme= BlocProvider.of<ThemeCubit>(context);
-    bool isDarkMode=theme.isDarkMode;
+    bool isDarkMode=Theme.of(context).brightness==Brightness.dark;
 
     return Container(
       decoration:  BoxDecoration(

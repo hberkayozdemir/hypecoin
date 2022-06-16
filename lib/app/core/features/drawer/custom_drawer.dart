@@ -9,6 +9,7 @@ import 'package:hypecoin/app/core/features/widgets/drawer_divider.dart';
 import 'package:hypecoin/app/core/theme/cubit/theme_cubit.dart';
 import 'package:hypecoin/localization/bloc/localization_bloc.dart';
 import 'package:hypecoin/localization/i10n.dart';
+import 'package:hypecoin/localization/localization.dart';
 import 'package:hypecoin/localization/provider/localization_helper.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -52,7 +53,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             height: 20.h,
           ),
           AutoSizeText(
-            "Hoşgeldiniz, user.state.name",
+            "${context.localization.welcome}, user.state.name",
             style: TextStyle(color: dark ? Colors.white : Colors.black),
           ),
           SizedBox(
@@ -69,7 +70,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               children: [
                 Expanded(
                     child: Text(
-                  "Hakkımızda.",
+                      context.localization.about_us,
                   style: TextStyle(color: dark ? Colors.white : Colors.black),
                 )),
                 Expanded(
@@ -88,7 +89,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               children: [
                 Expanded(
                     child: Text(
-                  "Whatsapp Canlı Destek",
+                      context.localization.whats_app_live_support,
                   style: TextStyle(color: dark ? Colors.white : Colors.black),
                 )),
                 Expanded(
@@ -109,7 +110,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 children: [
                   Expanded(
                     child: AutoSizeText(
-                      "Dil",
+                      context.localization.language,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: dark ? Colors.white : Colors.black,
@@ -122,7 +123,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       width: 100.0,
                       height: 50.0,
                       toggleSize: 45.0,
-                      value: selectedLocale == "en",
+                      value: context.localization.selected_language == "en",
                       borderRadius: 30.0,
                       padding: 2.0,
                       activeToggleColor: Colors.white,
@@ -137,11 +138,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       ),
                       activeColor: Colors.white,
                       inactiveColor: Colors.white,
-                      activeIcon: CircleAvatar(
+                      inactiveIcon: CircleAvatar(
                           backgroundColor: Colors.transparent,
                           radius: 40,
                           child: Assets.icons.turkey.svg()),
-                      inactiveIcon: CircleAvatar(
+                      activeIcon: CircleAvatar(
                         backgroundColor: Colors.transparent,
                         radius: 40,
                         child: Assets.icons.english.svg(fit: BoxFit.contain),
@@ -174,7 +175,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 children: [
                   Expanded(
                     child: AutoSizeText(
-                      "Theme",
+                      context.localization.theme,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: dark ? Colors.white : Colors.black,
@@ -222,7 +223,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   Expanded(
                     child: AutoSizeText(
-                      theme.isDarkMode == true ? "Dark Mode" : "Light Mode",
+                      theme.isDarkMode == true ?  context.localization.dark_mode :  context.localization.light_mode,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: dark ? Colors.white : Colors.black,
@@ -251,7 +252,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 children: [
                   Expanded(
                       child: Text(
-                    "Haber Ekle.",
+                    context.localization.add_news,
                     style: TextStyle(color: dark ? Colors.white : Colors.black),
                   )),
                   Expanded(
@@ -270,7 +271,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 children: [
                   Expanded(
                       child: Text(
-                    "Haberleri Düzenle.",
+                   context.localization.edit_news,
                     style: TextStyle(color: dark ? Colors.white : Colors.black),
                   )),
                   Expanded(
@@ -295,10 +296,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
               onPressed: () {},
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+
                 children: [
                   Expanded(
                       child: Text(
-                    "Editörleri Yönet",
+                    context.localization.manage_user,
                     style: TextStyle(color: dark ? Colors.white : Colors.black),
                   )),
                   Expanded(
@@ -317,7 +319,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 children: [
                   Expanded(
                       child: Text(
-                    "İstatistikler",
+                    context.localization.staticals,
                     style: TextStyle(color: dark ? Colors.white : Colors.black),
                   )),
                   Expanded(

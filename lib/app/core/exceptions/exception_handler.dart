@@ -14,7 +14,7 @@ class ExceptionHandler {
       }
       throw NullThrownError();
     } catch (e) {
-      return HypeAppLocalization.instance.system_error_occurred;
+      return HypeAppLocalization.instance.okey;
     }
   }
 }
