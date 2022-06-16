@@ -57,6 +57,7 @@ void main() {
                           GlobalWidgetsLocalizations.delegate,
                           GlobalCupertinoLocalizations.delegate,
                         ],
+
                         locale: state.locale,
                         supportedLocales: L10n.all,
                         routerDelegate: appRouter.delegate(),

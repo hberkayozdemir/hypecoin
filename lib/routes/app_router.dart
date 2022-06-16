@@ -9,6 +9,7 @@ import 'package:hypecoin/app/features/news/view/news_screen.dart';
 
 import 'package:hypecoin/app/features/session/login/view/login_screen.dart';
 import 'package:hypecoin/app/features/session/register/register_screen.dart';
+import 'package:hypecoin/app/features/session/verification/verification.dart';
 import 'package:hypecoin/app/features/trades/view/trades_screen.dart';
 import 'package:hypecoin/app/features/treasury/view/treasury_screen.dart';
 
@@ -19,6 +20,7 @@ part 'app_router.gr.dart';
   AutoRoute(initial: true,page: GetStartedScreen, path: 'getStarted'),
   AutoRoute(page: LoginScreen, path: 'login'),
   AutoRoute(page: RegisterScreen, path: 'register'),
+  AutoRoute(page: VerificationScreen, path: 'verification'),
   AutoRoute( page: LandingMainScreen, path: 'landing', children: [
     AutoRoute(page: FavListScreen, name: 'FavlistTab', path: 'favlist'),
     AutoRoute(page: NewsScreen, name: 'NewsTab', path: 'news'),
