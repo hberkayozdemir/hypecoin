@@ -21,6 +21,10 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const SplashScreen());
     },
+    GetStartedRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const GetStartedScreen());
+    },
     LoginRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const LoginScreen());
@@ -58,8 +62,9 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig('/#redirect',
-            path: '/', redirectTo: 'landing', fullMatch: true),
+            path: '/', redirectTo: 'getStarted', fullMatch: true),
         RouteConfig(SplashRoute.name, path: 'intro'),
+        RouteConfig(GetStartedRoute.name, path: 'getStarted'),
         RouteConfig(LoginRoute.name, path: 'login'),
         RouteConfig(RegisterRoute.name, path: 'register'),
         RouteConfig(LandingMainRoute.name, path: 'landing', children: [
@@ -83,6 +88,14 @@ class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute() : super(SplashRoute.name, path: 'intro');
 
   static const String name = 'SplashRoute';
+}
+
+/// generated route for
+/// [GetStartedScreen]
+class GetStartedRoute extends PageRouteInfo<void> {
+  const GetStartedRoute() : super(GetStartedRoute.name, path: 'getStarted');
+
+  static const String name = 'GetStartedRoute';
 }
 
 /// generated route for
