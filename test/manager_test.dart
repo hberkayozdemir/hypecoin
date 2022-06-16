@@ -14,25 +14,18 @@ import 'package:hypecoin/app/core/models/user_model.dart';
 void main() {
   test('Client Manager Test', () async {
     final manager = ClientManager(
-
       options: BaseOptions(baseUrl: 'http://127.0.0.1:8080'),
-
     );
     final response = await manager.postRequest<User, User>(
       '/login',
-      body:{
-
-        "email": "hilmiberkayozdemir@gmail.com",
-        "password":"Hbo.1998"
-      }
-      ,
+      body: {"email": "hilmiberkayozdemir@gmail.com", "password": "Hbo.1998"},
       parseModel: User(),
     );
     debugPrint(response.data?.exp.toString());
   });
 }
 
-class Connection extends ClientModel<Connection> {
+class Connection extends ManagerModel<Connection> {
   Connection({
     this.success,
   });

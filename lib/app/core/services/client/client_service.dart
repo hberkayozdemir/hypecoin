@@ -9,7 +9,7 @@ class ClientService {
 
   ClientService._() {
     manager = ClientManager(
-        options: BaseOptions(baseUrl: "http://127.0.0.1:8080"),
+        options: BaseOptions(baseUrl: "https://hibemi-be.herokuapp.com"),
         onRefreshToken: (error, manager) async {
           // final refreshToken = await manager.getRequest<Credantial, Credantial>(
           //   "/token",

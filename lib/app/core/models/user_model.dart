@@ -1,7 +1,7 @@
 import 'package:flutter_managers/flutter_managers.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-class User extends ClientModel<User> {
+class User extends ManagerModel<User> {
   User({
     this.token,
     this.userType,
@@ -17,15 +17,9 @@ class User extends ClientModel<User> {
   @override
   User fromJson(Map<String, dynamic> json) => User(
         token: json["token"],
-        userType: json["token"] == null
-            ? null
-            : JwtDecoder.decode(json["token"].toString())["userType"],
-        exp: json["token"] == null
-            ? null
-            : JwtDecoder.decode(json["token"].toString())["exp"],
-        iss: json["token"] == null
-            ? null
-            : JwtDecoder.decode(json["token"].toString())["iss"],
+        userType: json["token"] == null ? null : JwtDecoder.decode(json["token"].toString())["userType"],
+        exp: json["token"] == null ? null : JwtDecoder.decode(json["token"].toString())["exp"],
+        iss: json["token"] == null ? null : JwtDecoder.decode(json["token"].toString())["iss"],
       );
 
   @override
