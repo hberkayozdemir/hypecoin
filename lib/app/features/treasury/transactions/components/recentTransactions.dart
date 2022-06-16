@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hypecoin/app/features/treasury/bloc/treasury_bloc.dart';
 import 'package:hypecoin/app/features/treasury/transactions/utilities/themeStyles.dart';
 import 'package:hypecoin/app/features/treasury/transactions/widgets/transactionCard.dart';
 import 'package:hypecoin/localization/localization.dart';
 
 class RecentTransactions extends StatefulWidget {
+  final TreasuryState state;
+
+  const RecentTransactions({super.key, required this.state});
   @override
   _RecentTransactionsState createState() => _RecentTransactionsState();
 }
@@ -26,59 +30,38 @@ class _RecentTransactionsState extends State<RecentTransactions> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(context.localization.recent_transaction, style: ThemeStyles.primaryTitle),
-
               ],
             ),
           ),
-
-        Flexible(
-              flex: 1,
-              child: ListView(
-           padding:  EdgeInsets.all(16.r),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  TransactionCard(
-                    color: Colors.black,
-                    letter: 'F',
-                    title: 'Fintory GmbH',
-                    subTitle: 'Finance Landing Page',
-                    price: '- 5.720,30 €',
-                  ),
-                  TransactionCard(
-                    color: Color(0xfffe695d),
-                    letter: 'D',
-                    title: 'Domink Schmidit',
-                    subTitle: 'Mykonos Hotel Booking',
-                    price: '- 620,30 €',
-                  ),
-                  TransactionCard(
-                    color: Color(0xff103289),
-                    letter: 'E',
-                    title: 'Evolt.io',
-                    subTitle: 'Evolt UI Kit',
-                    price: '- 59,99 €',
-                  ),
-                  TransactionCard(
-                    color: Colors.greenAccent,
-                    letter: 'F',
-                    title: 'Fintory GmbH',
-                    subTitle: 'Finance Landing Page',
-                    price: '- 5.720,30 €',
-                  ),
-                  TransactionCard(
-                    color: Colors.amberAccent,
-                    letter: 'E',
-                    title: 'Evolt.io',
-                    subTitle: 'Evolt UI Kit',
-                    price: '- 59,99 €',
-                  ),
-                ],
-
-            ),
+          Flexible(
+            flex: 1,
+            child: _stateRouter(),
           )
         ],
       ),
     );
+  }
+
+  Widget _stateRouter() {
+    final state = widget.state;
+    if (state is TreasuryLoading) {
+      return Center(child: CircularProgressIndicator.adaptive());
+    } else if (state is TreasuryLoaded) {
+      return ListView.builder(
+        padding: EdgeInsets.all(16.r),
+        shrinkWrap: true,
+        itemCount: state.data.length,
+        itemBuilder: (context, i) => TransactionCard(data: state.data[i]),
+      );
+    } else if (state is TreasuryError) {
+      return Center(
+        child: Text(
+          state.error,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.red),
+        ),
+      );
+    } else {
+      return SizedBox();
+    }
   }
 }
