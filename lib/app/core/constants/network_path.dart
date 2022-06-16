@@ -10,15 +10,25 @@ class NetworkPath{
   static const appConfigDbKey = 'app_config_db_key';
   static const deleteTransaction='/users/:id/transactions';
   static const transaction='/transactions';
-
+  static const usersActive="/users/activate";
   static deleteNews(String id){
-    return '/news/id?=$id';
+    return '/news/$id';
   }
   static getUserTransaction(String id){
-    return '/users/id?=$id/transactions';
+    return '/users/$id/transactions';
   }
   static getNewsByID(String id){
-    return '/news/id?=$id';
+    return '/news/$id';
   }
+
+  static getTransactionByID(String id){
+    return  "/users/$id/transactions";
+  }
+  static deleteUserByID(String id)=> "/user/users/$id";
+
+
+ vv
+
+}
 
 }
