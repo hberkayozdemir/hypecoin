@@ -34,8 +34,10 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: RegisterScreen());
     },
     VerificationRoute.name: (routeData) {
+      final args = routeData.argsAs<VerificationRouteArgs>();
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const VerificationScreen());
+          routeData: routeData,
+          child: VerificationScreen(key: args.key, email: args.email));
     },
     LandingMainRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -66,7 +68,7 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig('/#redirect',
-            path: '/', redirectTo: 'getStarted', fullMatch: true),
+            path: '/', redirectTo: 'intro', fullMatch: true),
         RouteConfig(SplashRoute.name, path: 'intro'),
         RouteConfig(GetStartedRoute.name, path: 'getStarted'),
         RouteConfig(LoginRoute.name, path: 'login'),
@@ -121,11 +123,26 @@ class RegisterRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [VerificationScreen]
-class VerificationRoute extends PageRouteInfo<void> {
-  const VerificationRoute()
-      : super(VerificationRoute.name, path: 'verification');
+class VerificationRoute extends PageRouteInfo<VerificationRouteArgs> {
+  VerificationRoute({Key? key, required String email})
+      : super(VerificationRoute.name,
+            path: 'verification',
+            args: VerificationRouteArgs(key: key, email: email));
 
   static const String name = 'VerificationRoute';
+}
+
+class VerificationRouteArgs {
+  const VerificationRouteArgs({this.key, required this.email});
+
+  final Key? key;
+
+  final String email;
+
+  @override
+  String toString() {
+    return 'VerificationRouteArgs{key: $key, email: $email}';
+  }
 }
 
 /// generated route for

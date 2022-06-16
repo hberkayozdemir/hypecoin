@@ -16,12 +16,12 @@ import 'package:hypecoin/app/features/treasury/view/treasury_screen.dart';
 part 'app_router.gr.dart';
 
 @MaterialAutoRouter(replaceInRouteName: 'Screen,Route', routes: <AutoRoute>[
-  AutoRoute(page: SplashScreen, path: 'intro'),
-  AutoRoute(initial: true,page: GetStartedScreen, path: 'getStarted'),
+  AutoRoute(initial: true, page: SplashScreen, path: 'intro'),
+  AutoRoute(page: GetStartedScreen, path: 'getStarted'),
   AutoRoute(page: LoginScreen, path: 'login'),
   AutoRoute(page: RegisterScreen, path: 'register'),
   AutoRoute(page: VerificationScreen, path: 'verification'),
-  AutoRoute( page: LandingMainScreen, path: 'landing', children: [
+  AutoRoute(page: LandingMainScreen, path: 'landing', children: [
     AutoRoute(page: FavListScreen, name: 'FavlistTab', path: 'favlist'),
     AutoRoute(page: NewsScreen, name: 'NewsTab', path: 'news'),
     AutoRoute(page: HomePageScreen, name: 'HomeTab', path: 'home'),

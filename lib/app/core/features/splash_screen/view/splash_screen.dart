@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hypecoin/app/features/session/bloc/session_bloc.dart';
 import 'package:hypecoin/routes/app_router.dart';
 import 'package:video_player/video_player.dart';
 
@@ -27,9 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     new Future.delayed(
-        const Duration(seconds: 3),
-        () => context.router
-            .pushAndPopUntil(LoginRoute(), predicate: (route) => false));
+      const Duration(seconds: 3),
+      () => context.read<SessionBloc>().add(
+            SplashControlEvent(context),
+          ),
+    );
 
     super.initState();
 

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
+import 'package:hypecoin/app/features/session/bloc/session_bloc.dart';
 
 class VerificationScreen extends StatefulWidget {
-  const VerificationScreen({Key? key}) : super(key: key);
+  final String email;
+  const VerificationScreen({Key? key, required this.email}) : super(key: key);
 
   @override
   State<VerificationScreen> createState() => _VerificationScreenState();
@@ -30,10 +33,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
             ),
           ),
           VerificationCode(
-            textStyle: Theme.of(context)
-                .textTheme
-                .bodyText2!
-                .copyWith(color: Theme.of(context).primaryColor),
+            textStyle: Theme.of(context).textTheme.bodyText2!.copyWith(color: Theme.of(context).primaryColor),
             keyboardType: TextInputType.number,
             underlineColor: Colors.amber,
             // If this is null it will use primaryColor: Colors.red from Theme
@@ -46,16 +46,16 @@ class _VerificationScreenState extends State<VerificationScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'clear all',
-                style: TextStyle(
-                    fontSize: 14.0,
-                    decoration: TextDecoration.underline,
-                    color: Colors.blue[700]),
+                style: TextStyle(fontSize: 14.0, decoration: TextDecoration.underline, color: Colors.blue[700]),
               ),
             ),
             onCompleted: (String value) {
               setState(() {
                 _code = value;
               });
+              if (_code?.length != null && _code!.length == 4) {
+                context.read<SessionBloc>().add(OtpEvent(context, widget.email, _code!));
+              }
             },
             onEditing: (bool value) {
               setState(() {
@@ -67,9 +67,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
           Padding(
             padding: EdgeInsets.all(8.0),
             child: Center(
-              child: _onEditing
-                  ? Text('Please enter full code')
-                  : Text('Your code:$_code'),
+              child: _onEditing ? Text('Please enter full code') : Text('Your code:$_code'),
             ),
           )
         ],

@@ -7,6 +7,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:hypecoin/app/core/constants/assets.gen.dart';
 import 'package:hypecoin/app/core/features/widgets/drawer_divider.dart';
 import 'package:hypecoin/app/core/theme/cubit/theme_cubit.dart';
+import 'package:hypecoin/app/features/session/bloc/session_bloc.dart';
 import 'package:hypecoin/localization/bloc/localization_bloc.dart';
 import 'package:hypecoin/localization/i10n.dart';
 import 'package:hypecoin/localization/localization.dart';
@@ -24,8 +25,7 @@ class CustomDrawer extends StatefulWidget {
 class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
-    final ValueNotifier<L10n> selectedLocale =
-        ValueNotifier(L10n.get(currentLocale));
+    final ValueNotifier<L10n> selectedLocale = ValueNotifier(L10n.get(currentLocale));
     final theme = BlocProvider.of<ThemeCubit>(context);
     final dark = theme.isDarkMode;
     return Drawer(
@@ -70,7 +70,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               children: [
                 Expanded(
                     child: Text(
-                      context.localization.about_us,
+                  context.localization.about_us,
                   style: TextStyle(color: dark ? Colors.white : Colors.black),
                 )),
                 Expanded(
@@ -89,7 +89,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               children: [
                 Expanded(
                     child: Text(
-                      context.localization.whats_app_live_support,
+                  context.localization.whats_app_live_support,
                   style: TextStyle(color: dark ? Colors.white : Colors.black),
                 )),
                 Expanded(
@@ -112,9 +112,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     child: AutoSizeText(
                       context.localization.language,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: dark ? Colors.white : Colors.black,
-                          fontSize: 16),
+                      style: TextStyle(color: dark ? Colors.white : Colors.black, fontSize: 16),
                     ),
                   ),
                   SizedBox(height: 10),
@@ -138,10 +136,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       ),
                       activeColor: Colors.white,
                       inactiveColor: Colors.white,
-                      inactiveIcon: CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          radius: 40,
-                          child: Assets.icons.turkey.svg()),
+                      inactiveIcon: CircleAvatar(backgroundColor: Colors.transparent, radius: 40, child: Assets.icons.turkey.svg()),
                       activeIcon: CircleAvatar(
                         backgroundColor: Colors.transparent,
                         radius: 40,
@@ -162,9 +157,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     child: AutoSizeText(
                       selectedLocale.value.toString(),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: dark ? Colors.white : Colors.black,
-                          fontSize: 16),
+                      style: TextStyle(color: dark ? Colors.white : Colors.black, fontSize: 16),
                     ),
                   ),
                 ],
@@ -177,9 +170,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     child: AutoSizeText(
                       context.localization.theme,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: dark ? Colors.white : Colors.black,
-                          fontSize: 16),
+                      style: TextStyle(color: dark ? Colors.white : Colors.black, fontSize: 16),
                     ),
                   ),
                   SizedBox(height: 10),
@@ -223,16 +214,22 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   Expanded(
                     child: AutoSizeText(
-                      theme.isDarkMode == true ?  context.localization.dark_mode :  context.localization.light_mode,
+                      theme.isDarkMode == true ? context.localization.dark_mode : context.localization.light_mode,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: dark ? Colors.white : Colors.black,
-                          fontSize: 16),
+                      style: TextStyle(color: dark ? Colors.white : Colors.black, fontSize: 16),
                     ),
                   ),
                 ],
               ),
             ]),
+          ),
+          Center(
+            child: TextButton(
+                onPressed: () => context.read<SessionBloc>().add(LogOutEvent(context)),
+                child: Text(
+                  'Log out',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.redAccent),
+                )),
           )
         ],
       ),
@@ -271,7 +268,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 children: [
                   Expanded(
                       child: Text(
-                   context.localization.edit_news,
+                    context.localization.edit_news,
                     style: TextStyle(color: dark ? Colors.white : Colors.black),
                   )),
                   Expanded(
@@ -296,7 +293,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
               onPressed: () {},
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-
                 children: [
                   Expanded(
                       child: Text(
@@ -336,10 +332,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   }
 }
 
-void updateLanguage(BuildContext context, ValueNotifier<L10n> selectedLocale,
-    L10n newSelection) {
+void updateLanguage(BuildContext context, ValueNotifier<L10n> selectedLocale, L10n newSelection) {
   selectedLocale.value = newSelection;
-  context
-      .read<LocalizationsBloc>()
-      .add(ChangeLocale(selectedLocale.value.getLocale()));
+  context.read<LocalizationsBloc>().add(ChangeLocale(selectedLocale.value.getLocale()));
 }

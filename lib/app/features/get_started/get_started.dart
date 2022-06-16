@@ -16,22 +16,18 @@ class GetStartedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
+    bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
-    final ValueNotifier<L10n> selectedLocale =
-        ValueNotifier(L10n.get(currentLocale));
+    final ValueNotifier<L10n> selectedLocale = ValueNotifier(L10n.get(currentLocale));
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         width: size.width,
         height: size.height,
-        decoration:
-            BoxDecoration(color: isDarkMode ? Colors.black : Colors.white),
+        decoration: BoxDecoration(color: isDarkMode ? Colors.black : Colors.white),
         child: Padding(
           padding: EdgeInsets.all(25.r),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
             SizedBox(
               height: 50.h,
             ),
@@ -41,33 +37,35 @@ class GetStartedScreen extends StatelessWidget {
             ),
             AutoSizeText(
               context.localization.welcome,
-              style: ThemeStyles.primaryTitle
-                  .copyWith(color: Colors.black, fontSize: 42.sp),
+              style: ThemeStyles.primaryTitle.copyWith(color: Colors.black, fontSize: 42.sp),
             ),
             SizedBox(
               height: 12.h,
             ),
-            AutoSizeText(context.localization.welcome_to_financial,
+            AutoSizeText(
+              context.localization.welcome_to_financial,
               textAlign: TextAlign.center,
               style: TextStyle(
-              fontSize: 32.sp,
-              color: isDarkMode? Colors.white:Colors.black,),),
+                fontSize: 32.sp,
+                color: isDarkMode ? Colors.white : Colors.black,
+              ),
+            ),
             Spacer(),
             SizedBox(
               height: 20.h,
             ),
             RoundedButton(
-
-                onPressed: () => context.router.push(LoginRoute()),
-                color: isDarkMode? Colors.white:Colors.black,
-              
+                onPressed: () => context.router.pushAndPopUntil(LoginRoute(), predicate: (router) => false),
+                color: isDarkMode ? Colors.white : Colors.black,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                   AutoSizeText(context.localization.get_started,),
+                    AutoSizeText(
+                      context.localization.get_started,
+                    ),
                     Icon(
                       Icons.chevron_right,
-                      color: isDarkMode? Colors.black:Colors.white,
+                      color: isDarkMode ? Colors.black : Colors.white,
                     ),
                   ],
                 )),

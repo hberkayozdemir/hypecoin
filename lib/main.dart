@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => SessionBloc(context)),
+          BlocProvider(create: (context) => SessionBloc()),
           BlocProvider(create: (context) => ThemeCubit()),
           BlocProvider(
             create: (context) => LocalizationsBloc(
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
                         ),
                         child: LoadingProvider(
                           themeData: LoadingThemeData(),
-                          loadingWidgetBuilder: (context, data) => CircularProgressIndicator(),
+                          loadingWidgetBuilder: (context, data) => Center(child: CircularProgressIndicator()),
                           child: child!,
                         ),
                       );
