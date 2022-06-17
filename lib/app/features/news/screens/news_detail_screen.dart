@@ -1,18 +1,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hypecoin/app/core/constants/assets.gen.dart';
-import 'package:hypecoin/app/features/news/data/article.dart';
+import 'package:hypecoin/app/features/editor/models/news.dart';
+import 'package:hypecoin/app/features/news/bloc/seperated_news_bloc.dart';
 
-class ArticleScreen extends StatefulWidget {
-  final Article article;
+class NewsDetailScreen extends StatefulWidget {
+  News state;
 
-  const ArticleScreen({Key? key, required this.article}) : super(key: key);
+   NewsDetailScreen({Key? key, required this.state}) : super(key: key);
 
   @override
-  _ArticleScreenState createState() => _ArticleScreenState();
+  _NewsDetailScreenState createState() => _NewsDetailScreenState();
 }
 
-class _ArticleScreenState extends State<ArticleScreen> {
+class _NewsDetailScreenState extends State<NewsDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,7 +33,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                         ),
                         image: DecorationImage(
                           fit: BoxFit.fill,
-                          image: AssetImage(widget.article.image ??
+                          image: AssetImage(widget.state.image ??
                               Assets.images.banner1.path),
                         ),
                       ),
@@ -60,7 +61,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            widget.article.category ?? "",
+                            widget.state.hashtags.toString() ??"",
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 30,
@@ -68,7 +69,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                             ),
                           ),
                           Text(
-                            widget.article.time ?? "",
+                            widget.state.createdAt ?? "",
                             style: TextStyle(
                               color: Colors.grey,
                               fontSize: 20,
@@ -81,7 +82,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                         height: 20,
                       ),
                       Text(
-                        widget.article.title ?? "",
+                        widget.state.title ?? "",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
@@ -94,8 +95,8 @@ class _ArticleScreenState extends State<ArticleScreen> {
                       Row(
                         children: [
                           Image.asset(
-                            widget.article.authorImg ??
-                                Assets.images.banner1.path,
+                            widget.state.updatedAt ??
+                                Assets.icons.appLogo.path,
                             height: 30,
                           ),
                         ],
@@ -104,7 +105,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                         height: 20,
                       ),
                       Text(
-                        widget.article.description ?? "",
+                        widget.state.content ?? "",
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 20,

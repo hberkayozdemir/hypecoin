@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hypecoin/app/core/constants/assets.gen.dart';
 import 'package:hypecoin/app/core/features/appbar/hibemi_appbar.dart';
 import 'package:hypecoin/app/core/theme/cubit/theme_cubit.dart';
-import 'package:hypecoin/app/features/news/Screens/HomeScreen.dart';
+import 'package:hypecoin/app/features/news/Widgets/news_body.dart';
 
 class NewsScreen extends StatelessWidget {
   const NewsScreen({Key? key}) : super(key: key);

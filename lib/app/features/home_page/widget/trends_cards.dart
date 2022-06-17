@@ -7,21 +7,21 @@ import 'package:hypecoin/app/features/trades/data/spots_model.dart';
 import 'package:hypecoin/app/features/treasury/transactions/utilities/themeStyles.dart';
 import 'package:hypecoin/app/core/features/pop_up/dialogs.dart';
 
-class TradesCard extends StatefulWidget {
-  final SpotsModel spot;
+class FavlistCard extends StatefulWidget {
+  final FavlistModel spot;
   final VoidCallback onpressed;
 
-  TradesCard({
+  FavlistCard({
     required this.onpressed,
     required this.spot,
 
   });
 
   @override
-  _TradesCardState createState() => _TradesCardState();
+  _FavlistCardState createState() => _FavlistCardState();
 }
 
-class _TradesCardState extends State<TradesCard> {
+class _FavlistCardState extends State<FavlistCard> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,7 +37,7 @@ class _TradesCardState extends State<TradesCard> {
                 child: InkWell(
                   onTap: widget.onpressed,
                   child: Icon(
-                    Icons.star_border_purple500,
+                    Icons.star,
                     color: Colors.pink,
                     size: 30,
                   ),
@@ -81,16 +81,16 @@ class _TradesCardState extends State<TradesCard> {
                                   children: [
                                     Text(widget.spot.symbol.toString(),
                                         style: ThemeStyles.otherDetailsPrimary),
-                                    Text(widget.spot.price.toString(),
+                                    Text(widget.spot.currentPrice.toString(),
                                         style:
-                                            ThemeStyles.otherDetailsSecondary),
+                                        ThemeStyles.otherDetailsSecondary),
                                   ],
                                 )
                               ],
                             ),
                             Row(
                               children: [
-                                Text(widget.spot.price.toString(),
+                                Text(widget.spot.currentPrice.toString(),
                                     style: TextStyle(color: Colors.green)),
                                 SizedBox(width: 4.0),
                                 Icon(Icons.keyboard_arrow_right),

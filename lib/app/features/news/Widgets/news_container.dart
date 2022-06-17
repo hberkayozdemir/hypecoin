@@ -2,33 +2,25 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hypecoin/app/core/constants/assets.gen.dart';
-import 'package:hypecoin/app/features/news/Screens/ArticleScreen.dart';
-import 'package:hypecoin/app/features/news/data/article.dart';
+import 'package:hypecoin/app/features/editor/models/news.dart';
 
-class ForYouContainer extends StatefulWidget {
-  final Article article;
-
-  const ForYouContainer({Key? key, required this.article}) : super(key: key);
+class NewsContainer extends StatefulWidget {
+final News state;
+final VoidCallback onPressed;
+   NewsContainer({Key? key, required this.state,required this.onPressed}) : super(key: key);
 
   @override
-  _ForYouContainerState createState() => _ForYouContainerState();
+  _NewsContainerState createState() => _NewsContainerState();
 }
 
-class _ForYouContainerState extends State<ForYouContainer> {
+class _NewsContainerState extends State<NewsContainer> {
 
   @override
   Widget build(BuildContext context) {
     final isDarkMode = MediaQuery
         .of(context)
         .platformBrightness == Brightness.dark;
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) =>
-                ArticleScreen(
-                  article: widget.article,
-                )));
-      },
+    return GestureDetector(onTap:widget.onPressed ,
       child: Container(
 
 
@@ -57,8 +49,8 @@ class _ForYouContainerState extends State<ForYouContainer> {
                 ),
                 image: DecorationImage(
                   fit: BoxFit.contain,
-                  image: AssetImage(
-                      widget.article.image ?? Assets.icons.appLogo.path),
+                  image: NetworkImage(
+                      widget.state.image ?? Assets.icons.appLogo.path),
                 ),
               ),
             ),
@@ -76,25 +68,18 @@ class _ForYouContainerState extends State<ForYouContainer> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         AutoSizeText(
-                          widget.article.category ?? "",
+                          widget.state.hashtags.toString() ?? "",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        AutoSizeText(
-                          widget.article.time ?? "",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
+
                       ],
                     ),
                     AutoSizeText(
-                      widget.article.title ?? "",
+                      widget.state.title ?? "",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -102,7 +87,7 @@ class _ForYouContainerState extends State<ForYouContainer> {
                       ),
                     ),
                     AutoSizeText(
-                      widget.article.author ?? Assets.icons.appLogo.path,
+                      widget.state.content ?? Assets.icons.appLogo.path,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 15,

@@ -23,6 +23,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
   SessionBloc() : super(SessionState()) {
     on<LoginEvent>(_login);
     on<RegisterEvent>(_register);
+    on<RegisterEditorEvent>(_registerEditor);
     on<SplashControlEvent>(_splashControl);
     on<OtpEvent>(_otp);
     on<LogOutEvent>(_logout);
@@ -113,7 +114,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
 
       if (response.data != null) {
         await CacheManager.saveModel(response.data!);
-
+debugPrint(response.data!.toString());
         toastMessage(
           event.context.localization.login_success,
           type: ToasType.success,
@@ -149,6 +150,49 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
       hideLoadingDialog();
     }
   }
+
+
+
+  Future<void> _registerEditor(RegisterEditorEvent event, Emitter<SessionState> emit) async {
+    try {
+      await showLoadingDialog();
+
+      final response = await _manager.postRequest<User, User>(
+        NetworkPath.registerEditor,
+        parseModel: User(),
+        body: {
+          'userType': "editor",
+          'firstName': event.firstName,
+          'lastName': event.lastName,
+          'phone': event.phone,
+          'email': event.email,
+          'password': event.password,
+        },
+      );
+
+      if (response.error?.statusCode == 201) {
+        toastMessage(
+          event.context.localization.login_success,
+          type: ToasType.success,
+        );
+      } else {
+        toastMessage(
+          response.error?.statusCode != null ? response.error!.statusCode.toString() : 'Error',
+          type: ToasType.error,
+        );
+      }
+    } catch (e) {
+      toastMessage(
+        e.toString(),
+        type: ToasType.error,
+      );
+    } finally {
+      hideLoadingDialog();
+    }
+  }
+
+
+
 
   void _splashControl(SplashControlEvent event, Emitter<SessionState> emit) async {
     final getStartedActive = CacheManager.getBool(StringConstant.getStartedActive);
