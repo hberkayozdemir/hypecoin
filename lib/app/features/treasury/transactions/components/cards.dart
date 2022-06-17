@@ -5,14 +5,20 @@ import 'package:hypecoin/app/features/treasury/transactions/widgets/creditCard.d
 import 'package:hypecoin/localization/localization.dart';
 
 class CardsList extends StatefulWidget {
+final num money;
+
+  const CardsList({super.key, required this.money});
+
+
   @override
   _CardsListState createState() => _CardsListState();
 }
 
 class _CardsListState extends State<CardsList> {
-  List cardList = [
-    CreditCard(),
-  ];
+
+
+
+
 
   int _currentCard = 0;
 
@@ -33,6 +39,9 @@ class _CardsListState extends State<CardsList> {
 
   @override
   Widget build(BuildContext context) {
+    List cardList = [
+      CreditCard(money: widget.money, ),
+    ];
     return Container(
       child: Column(
         children: [
@@ -53,7 +62,7 @@ class _CardsListState extends State<CardsList> {
               scrollDirection: Axis.horizontal,
               controller: _pageController,
               onPageChanged: _onPageChanged,
-              itemBuilder: (context, index) => CreditCard(),
+              itemBuilder: (context, index) => CreditCard(money: widget.money),
             ),
           ),
           Padding(

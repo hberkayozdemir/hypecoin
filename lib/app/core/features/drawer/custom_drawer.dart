@@ -1,12 +1,18 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_managers/flutter_managers.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:hypecoin/app/core/constants/assets.gen.dart';
 import 'package:hypecoin/app/core/features/widgets/drawer_divider.dart';
+import 'package:hypecoin/app/core/models/user_model.dart';
 import 'package:hypecoin/app/core/theme/cubit/theme_cubit.dart';
+import 'package:hypecoin/app/features/admin/manage/register_editor.dart';
+import 'package:hypecoin/app/features/admin/staticals/view/staticals.dart';
+import 'package:hypecoin/app/features/editor/add_news/add_news.dart';
+import 'package:hypecoin/app/features/editor/edit_news/edit_news.dart';
 import 'package:hypecoin/app/features/session/bloc/session_bloc.dart';
 import 'package:hypecoin/localization/bloc/localization_bloc.dart';
 import 'package:hypecoin/localization/i10n.dart';
@@ -23,11 +29,14 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+
   @override
   Widget build(BuildContext context) {
     final ValueNotifier<L10n> selectedLocale = ValueNotifier(L10n.get(currentLocale));
     final theme = BlocProvider.of<ThemeCubit>(context);
     final dark = theme.isDarkMode;
+    final String usertype=CacheManager.getModel(User())!.userType!;
+
     return Drawer(
       elevation: 4,
       backgroundColor: dark ? Colors.black : Colors.white,
@@ -53,7 +62,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             height: 20.h,
           ),
           AutoSizeText(
-            "${context.localization.welcome}, user.state.name",
+            "${context.localization.welcome}, $usertype ",
             style: TextStyle(color: dark ? Colors.white : Colors.black),
           ),
           SizedBox(
@@ -100,8 +109,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ],
             ),
           ),
-          _editorPerms(true, dark),
-          _adminPerms(true, dark),
+          _editorPerms(usertype=="editor", dark),
+          _adminPerms(usertype=="admin", dark,context),
+          SizedBox(height: 40.h,),
+
           Padding(
             padding: EdgeInsets.all(12),
             child: Column(children: [
@@ -243,7 +254,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
           children: [
             DrawerDivider(),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> AddNewsScreen() ));
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -262,7 +275,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             DrawerDivider(),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> EditNewsScreen() ));
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -280,17 +296,21 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
             ),
             DrawerDivider(),
+
           ],
         ));
   }
 
-  Widget _adminPerms(bool isAdmin, bool dark) {
+  Widget _adminPerms(bool isAdmin, bool dark,BuildContext context) {
     return Visibility(
         visible: isAdmin,
         child: Column(
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> ManageEditorScreen() ));
+
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -309,7 +329,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             DrawerDivider(),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> Staticals() ));
+
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -14,8 +14,8 @@ class TreasuryModel extends ManagerModel<TreasuryModel> {
   String? id;
   String? userId;
   String? symbol;
-  int? amount;
-  int? buyingPrice;
+  num? amount;
+  num? buyingPrice;
   DateTime? createdAt;
   String? transactionType;
 

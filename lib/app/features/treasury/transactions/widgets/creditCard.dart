@@ -8,6 +8,9 @@ import 'package:hypecoin/app/features/treasury/transactions/utilities/themeColor
 import 'package:hypecoin/app/features/treasury/transactions/utilities/themeStyles.dart';
 
 class CreditCard extends StatefulWidget {
+  final num money;
+
+  const CreditCard({super.key,  this.money=0});
   @override
   _CreditCardState createState() => _CreditCardState();
 }
@@ -41,7 +44,7 @@ class _CreditCardState extends State<CreditCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Assets.icons.appLogo.image(height: 55),
-                    Text(' 5.720,30 \$ ', style: ThemeStyles.cardMoney.copyWith(color: isDarkMode ? Colors.black:Colors.white)),
+                    Text(widget.money <=0 ? '-${widget.money} \$':'+${widget.money} \$', style: ThemeStyles.cardMoney.copyWith(color: widget.money <=0 ?  Colors.red:Colors.greenAccent.shade700)),
                 Assets.images.drawerbanner.image(width: 130),
                   ],
                 ),

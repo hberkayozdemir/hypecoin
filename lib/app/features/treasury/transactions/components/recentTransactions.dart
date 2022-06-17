@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hypecoin/app/features/treasury/bloc/treasury_bloc.dart';
+import 'package:hypecoin/app/features/treasury/transactions/screens/add_transaction.dart';
 import 'package:hypecoin/app/features/treasury/transactions/utilities/themeStyles.dart';
 import 'package:hypecoin/app/features/treasury/transactions/widgets/transactionCard.dart';
 import 'package:hypecoin/localization/localization.dart';
@@ -9,6 +10,7 @@ class RecentTransactions extends StatefulWidget {
   final TreasuryState state;
 
   const RecentTransactions({super.key, required this.state});
+
   @override
   _RecentTransactionsState createState() => _RecentTransactionsState();
 }
@@ -29,7 +31,13 @@ class _RecentTransactionsState extends State<RecentTransactions> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(context.localization.recent_transaction, style: ThemeStyles.primaryTitle),
+                Text(context.localization.recent_transaction,
+                    style: ThemeStyles.primaryTitle),
+
+                ElevatedButton(onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => AddTransactionScreen()));
+                }, child: Center(child: Text("Add Transaction"),))
               ],
             ),
           ),
@@ -57,7 +65,11 @@ class _RecentTransactionsState extends State<RecentTransactions> {
       return Center(
         child: Text(
           state.error,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.red),
+          style: Theme
+              .of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(color: Colors.red),
         ),
       );
     } else {

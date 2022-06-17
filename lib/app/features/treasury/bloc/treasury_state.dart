@@ -12,7 +12,9 @@ class TreasuryInitial extends TreasuryState {}
 class TreasuryLoading extends TreasuryState {}
 
 class TreasuryLoaded extends TreasuryState {
-  final List<TreasuryModel> data;
+  final List<TreasuryModel>  data;
+
+
   TreasuryLoaded(this.data);
 }
 
