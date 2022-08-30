@@ -25,9 +25,9 @@ class HypeLocalDataBaseService {
 
   Future<bool> openBox() async {
     try {
-      final toggBoxKey =
+      final hypeBoxKey =
           await _flutterSecureStorage.read(key: StringConstant.hypeBoxKey);
-      if (toggBoxKey == null) {
+      if (hypeBoxKey == null) {
         final key = Hive.generateSecureKey();
         await _flutterSecureStorage.write(
             key: StringConstant.hypeBoxKey, value: base64UrlEncode(key));

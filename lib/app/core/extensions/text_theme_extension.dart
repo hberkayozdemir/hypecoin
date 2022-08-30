@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 extension HibemiTextStyle on BuildContext {
-  TextTheme get toggTextTheme => Theme.of(this).textTheme;
+  TextTheme get hypeTextTheme => Theme.of(this).textTheme;
 }
 
 extension HibemiStyleEx on TextTheme {
